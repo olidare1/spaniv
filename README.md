@@ -26,7 +26,7 @@ With AgentLens you can:
 
 ## Project Status
 
-🚧 This project is currently in development.
+🚧 This project is currently in development. 
 
 Current focus:
 - Backend foundation
