@@ -1,8 +1,9 @@
-from sqlalchemy import create_engine, String
+from sqlalchemy import create_engine, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, sessionmaker
 import bcrypt
+from datetime import datetime, timezone
 
-engine = create_engine("sqlite:///spaniv_db.db")
+engine = create_engine("sqlite:///spaniv.db")
 SessionLocal = sessionmaker(bind=engine)
 
 class Base(DeclarativeBase):
@@ -13,6 +14,7 @@ class User(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String(128), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc))
 
     def set_password(self, pw: str) -> None:
         pw_bytes = pw.encode()
