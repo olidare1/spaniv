@@ -25,11 +25,14 @@ class User(Base):
         pw_bytes = pw.encode("utf-8")
         return bcrypt.checkpw(pw_bytes, self.password_hash.encode("utf-8"))
     
+test_pw = "MyTestPassword"
 
 Base.metadata.create_all(engine)
 user_1 = User(email="testmail@gmail.com")
-user_1.set_password("MyTestPassword")
+user_1.set_password(test_pw)
+
 
 with SessionLocal() as session:
     session.add(user_1)
     session.commit()
+    user_1.check_password(test_pw)
