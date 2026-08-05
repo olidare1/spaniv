@@ -9,7 +9,7 @@ With AgentLens you can:
 - Track agent executions
 - See every execution step
 - Monitor tool calls
-- Find errors
+- Find errors 
 - Measure execution time
 - Track token usage
 - Calculate request costs
